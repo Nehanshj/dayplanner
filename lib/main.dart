@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'Data.dart';
+import 'edit_bottomsheet.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -25,6 +28,27 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.edit),
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) =>
+                    SingleChildScrollView(
+                        child: Container(
+                          padding: EdgeInsets.only(
+                              bottom: MediaQuery
+                                  .of(context)
+                                  .viewInsets
+                                  .bottom),
+                          child: Edit(),
+                        )),
+                isScrollControlled: true,
+              );
+            },
+          )
+        ],
         title: Text(
           'MyPlanner',
           style: TextStyle(
@@ -54,13 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                       padding: EdgeInsets.all(8.0),
                       width: 300.0,
-                      child: TextField(
-                        decoration: new InputDecoration(
-                          hintText: 'Monday Task',
-                        ),
-                        maxLines: 1,
+                      child: Text(Data().mondayText),
                       ),
-                    ),
                   ],
                 ),
               ),

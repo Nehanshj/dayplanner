@@ -11,6 +11,8 @@ class _EditState extends State<Edit> {
   String selected;
   String newText;
 
+  Data data = new Data();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +37,7 @@ class _EditState extends State<Edit> {
                 ),
               ),
               DropdownButton(
-                  items: Data().days,
+                  items: data.days,
                   value: selected,
                   onChanged: (value) {
                     selected = value;
@@ -57,7 +59,7 @@ class _EditState extends State<Edit> {
                 color: Colors.lightBlueAccent,
                 onPressed: () {
                   setState(() {
-                    Data().changeText(selected, newText);
+                    data.changeText(selected, newText);
                   });
                   Navigator.pop(context);
                 },
